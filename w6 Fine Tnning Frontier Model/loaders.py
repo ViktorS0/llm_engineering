@@ -9,7 +9,11 @@ MIN_PRICE = 0.5
 MAX_PRICE = 999.49
 
 class ItemLoader:
+    """loading and processing a dataset in chunks to create Items from it
 
+    splits the dataset into chunks and apply from_datapoint to each element in the chunk ti itemize it. 
+    uses item class to create items data set with prompts. 
+    """
 
     def __init__(self, name):
         self.name = name
