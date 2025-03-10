@@ -4,7 +4,8 @@ from agents.agent import Agent
 
 class SpecialistAgent(Agent):
     """
-    An Agent that runs our fine-tuned LLM that's running remotely on Modal
+    A wrapper class that calls the "Pricer" class from pricer-service app we deployed on Modal in the pricer_service2.py file.
+    this simplifies the call of the price model and makes it easier to use in the agent.
     """
 
     name = "Specialist Agent"

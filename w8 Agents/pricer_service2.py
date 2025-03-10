@@ -27,16 +27,24 @@ PREFIX = "Price is $"
 
 @app.cls(image=image, secrets=secrets, gpu=GPU, timeout=1800)
 class Pricer:
-    @modal.build()
-    def download_model_to_folder(self):
+    """A class to price items using a fine-tuned LLM model.
+
+    this is the same as the function in pricer_service.py but as a class.
+    this allows us to separate the model installation, model setup and calling the model to do predictions.
+
+    """
+    @modal.build() # build the container with the specified image. 
+    def download_model_to_folder(self): # Install the model in the container
+        """Download the model to local folder"""
         from huggingface_hub import snapshot_download
         import os
         os.makedirs(MODEL_DIR, exist_ok=True)
         snapshot_download(BASE_MODEL, local_dir=BASE_DIR)
         snapshot_download(FINETUNED_MODEL, revision=REVISION, local_dir=FINETUNED_DIR)
 
-    @modal.enter()
+    @modal.enter() # enter the container and run the setup method to set up the model
     def setup(self):
+        """Setup the model"""
         import os
         import torch
         from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, set_seed
@@ -64,8 +72,9 @@ class Pricer:
     
         self.fine_tuned_model = PeftModel.from_pretrained(self.base_model, FINETUNED_DIR, revision=REVISION)
 
-    @modal.method()
+    @modal.method() # call the pricer model when the container is running
     def price(self, description: str) -> float:
+        """Call the model to get price prediction"""
         import os
         import re
         import torch

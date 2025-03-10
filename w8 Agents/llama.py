@@ -13,6 +13,8 @@ MODEL_NAME = "meta-llama/Meta-Llama-3.1-8B" # "google/gemma-2-2b"
 
 @app.function(image=image, secrets=secrets, gpu=GPU, timeout=1800)
 def generate(prompt: str) -> str:
+    """
+    Generate text from a prompt using the Meta-Llama model."""
     import os
     import torch
     from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, set_seed
