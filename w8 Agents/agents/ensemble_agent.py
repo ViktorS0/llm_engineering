@@ -8,6 +8,9 @@ from agents.frontier_agent import FrontierAgent
 from agents.random_forest_agent import RandomForestAgent
 
 class EnsembleAgent(Agent):
+    """
+    An ensemble agent that combines the predictions of the specialist, frontier and random forest agents.
+    It uses a linear regression model to combine the predictions."""
 
     name = "Ensemble Agent"
     color = Agent.YELLOW

@@ -10,6 +10,10 @@ from agents.agent import Agent
 
 
 class RandomForestAgent(Agent):
+    """
+    A class that uses a Random Forest model to estimate the price of a product. 
+    the model is trained on the vectorized product descriptions and their prices.
+    """
 
     name = "Random Forest Agent"
     color = Agent.MAGENTA

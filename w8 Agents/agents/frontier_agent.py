@@ -15,6 +15,10 @@ from agents.agent import Agent
 
 
 class FrontierAgent(Agent):
+    """
+    The Frontier Agent is a GPT-4 model that estimates the price of an item using RAG as in <llm_engineering/w8 Agents/day2.3 RAG pipeline.ipynb>
+    It uses the Chroma datastore to find similar items to the one being estimated and includes them in the prompt to give context to the model
+    """
 
     name = "Frontier Agent"
     color = Agent.BLUE
