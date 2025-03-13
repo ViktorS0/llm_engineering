@@ -7,6 +7,10 @@ from agents.agent import Agent
 
 
 class ScannerAgent(Agent):
+    """
+    An agent that scans RSS feeds for new deals and selects the best ones.
+    it uses OpenAI to help format and select the best deals.
+    """
 
     MODEL = "gpt-4o-mini"
 
